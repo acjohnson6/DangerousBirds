@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310E51C318A5AC1400D2EE17 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */; };
+		310E51C418A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BC18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m */; };
+		310E51C518A5AC1400D2EE17 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BE18A5AC1400D2EE17 /* SKNode+SKTExtras.m */; };
+		310E51C618A5AC1400D2EE17 /* SKTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51C018A5AC1400D2EE17 /* SKTAudio.m */; };
+		310E51C718A5AC1400D2EE17 /* SKTUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310E51C218A5AC1400D2EE17 /* SKTUtils.mm */; };
 		312C0F6C18A5987A004B63D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F6B18A5987A004B63D5 /* Foundation.framework */; };
 		312C0F6E18A5987A004B63D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F6D18A5987A004B63D5 /* CoreGraphics.framework */; };
 		312C0F7018A5987A004B63D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F6F18A5987A004B63D5 /* UIKit.framework */; };
@@ -17,13 +22,23 @@
 		312C0F8118A5987A004B63D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 312C0F7F18A5987A004B63D5 /* Main.storyboard */; };
 		312C0F8418A5987A004B63D5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C0F8318A5987A004B63D5 /* ViewController.m */; };
 		312C0F8718A5987A004B63D5 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C0F8618A5987A004B63D5 /* MyScene.m */; };
-		312C0F8918A5987A004B63D5 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 312C0F8818A5987A004B63D5 /* Spaceship.png */; };
 		312C0F8B18A5987A004B63D5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 312C0F8A18A5987A004B63D5 /* Images.xcassets */; };
 		312C0F9218A5987A004B63D5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F9118A5987A004B63D5 /* XCTest.framework */; };
 		312C0F9318A5987A004B63D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F6B18A5987A004B63D5 /* Foundation.framework */; };
 		312C0F9418A5987A004B63D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F6F18A5987A004B63D5 /* UIKit.framework */; };
 		312C0F9C18A5987A004B63D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 312C0F9A18A5987A004B63D5 /* InfoPlist.strings */; };
 		312C0F9E18A5987A004B63D5 /* DangerousBirdsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C0F9D18A5987A004B63D5 /* DangerousBirdsTests.m */; };
+		3155732A18A9522200B3CF81 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3155732818A9522200B3CF81 /* smoke.sks */; };
+		3155732B18A9522200B3CF81 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3155732918A9522200B3CF81 /* spark.png */; };
+		3155732E18A9539200B3CF81 /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = 3155732D18A9539200B3CF81 /* Plane.m */; };
+		3155733018A9617E00B3CF81 /* rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3155732F18A9617E00B3CF81 /* rain.sks */; };
+		4C209CF518A6DF6600482A89 /* SKTEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CF218A6DF6600482A89 /* SKTEffects.m */; };
+		4C209CF618A6DF6600482A89 /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CF418A6DF6600482A89 /* SKTTimingFunctions.m */; };
+		4C209CFA18A6E72C00482A89 /* AnimatingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CF918A6E72C00482A89 /* AnimatingSprite.m */; };
+		4C209CFD18A6EA1500482A89 /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CFC18A6EA1500482A89 /* Bird.m */; };
+		4C209D0318A6EDA700482A89 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C209D0218A6EDA700482A89 /* background.png */; };
+		4C209D0618A6EE3F00482A89 /* birds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4C209D0418A6EE3F00482A89 /* birds.atlas */; };
+		4C209D0718A6EE3F00482A89 /* plane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4C209D0518A6EE3F00482A89 /* plane.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +52,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310E51B918A5AC1400D2EE17 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKAction+SKTExtras.h"; path = "SKTUtils/SKAction+SKTExtras.h"; sourceTree = "<group>"; };
+		310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKAction+SKTExtras.m"; path = "SKTUtils/SKAction+SKTExtras.m"; sourceTree = "<group>"; };
+		310E51BB18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKEmitterNode+SKTExtras.h"; path = "SKTUtils/SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
+		310E51BC18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKEmitterNode+SKTExtras.m"; path = "SKTUtils/SKEmitterNode+SKTExtras.m"; sourceTree = "<group>"; };
+		310E51BD18A5AC1400D2EE17 /* SKNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKNode+SKTExtras.h"; path = "SKTUtils/SKNode+SKTExtras.h"; sourceTree = "<group>"; };
+		310E51BE18A5AC1400D2EE17 /* SKNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKNode+SKTExtras.m"; path = "SKTUtils/SKNode+SKTExtras.m"; sourceTree = "<group>"; };
+		310E51BF18A5AC1400D2EE17 /* SKTAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKTAudio.h; path = SKTUtils/SKTAudio.h; sourceTree = "<group>"; };
+		310E51C018A5AC1400D2EE17 /* SKTAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKTAudio.m; path = SKTUtils/SKTAudio.m; sourceTree = "<group>"; };
+		310E51C118A5AC1400D2EE17 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKTUtils.h; path = SKTUtils/SKTUtils.h; sourceTree = "<group>"; };
+		310E51C218A5AC1400D2EE17 /* SKTUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SKTUtils.mm; path = SKTUtils/SKTUtils.mm; sourceTree = "<group>"; };
 		312C0F6818A5987A004B63D5 /* DangerousBirds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DangerousBirds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		312C0F6B18A5987A004B63D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		312C0F6D18A5987A004B63D5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,13 +78,29 @@
 		312C0F8318A5987A004B63D5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		312C0F8518A5987A004B63D5 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		312C0F8618A5987A004B63D5 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		312C0F8818A5987A004B63D5 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		312C0F8A18A5987A004B63D5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		312C0F9018A5987A004B63D5 /* DangerousBirdsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DangerousBirdsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		312C0F9118A5987A004B63D5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		312C0F9918A5987A004B63D5 /* DangerousBirdsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DangerousBirdsTests-Info.plist"; sourceTree = "<group>"; };
 		312C0F9B18A5987A004B63D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		312C0F9D18A5987A004B63D5 /* DangerousBirdsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DangerousBirdsTests.m; sourceTree = "<group>"; };
+		3155732818A9522200B3CF81 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = smoke.sks; path = Resources/Particles/smoke.sks; sourceTree = "<group>"; };
+		3155732918A9522200B3CF81 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Resources/Particles/spark.png; sourceTree = "<group>"; };
+		3155732C18A9539200B3CF81 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = Entities/Plane.h; sourceTree = "<group>"; };
+		3155732D18A9539200B3CF81 /* Plane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plane.m; path = Entities/Plane.m; sourceTree = "<group>"; };
+		3155732F18A9617E00B3CF81 /* rain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = rain.sks; path = Resources/Particles/rain.sks; sourceTree = "<group>"; };
+		4C209CF118A6DF6600482A89 /* SKTEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKTEffects.h; path = "Resources/Extra Source Code/SKTEffects.h"; sourceTree = "<group>"; };
+		4C209CF218A6DF6600482A89 /* SKTEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKTEffects.m; path = "Resources/Extra Source Code/SKTEffects.m"; sourceTree = "<group>"; };
+		4C209CF318A6DF6600482A89 /* SKTTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKTTimingFunctions.h; path = "Resources/Extra Source Code/SKTTimingFunctions.h"; sourceTree = "<group>"; };
+		4C209CF418A6DF6600482A89 /* SKTTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKTTimingFunctions.m; path = "Resources/Extra Source Code/SKTTimingFunctions.m"; sourceTree = "<group>"; };
+		4C209CF818A6E72C00482A89 /* AnimatingSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatingSprite.h; path = Entities/AnimatingSprite.h; sourceTree = "<group>"; };
+		4C209CF918A6E72C00482A89 /* AnimatingSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatingSprite.m; path = Entities/AnimatingSprite.m; sourceTree = "<group>"; };
+		4C209CFB18A6EA1500482A89 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bird.h; path = Entities/Bird.h; sourceTree = "<group>"; };
+		4C209CFC18A6EA1500482A89 /* Bird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bird.m; path = Entities/Bird.m; sourceTree = "<group>"; };
+		4C209D0218A6EDA700482A89 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/Art/Background/background.png; sourceTree = "<group>"; };
+		4C209D0418A6EE3F00482A89 /* birds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = birds.atlas; path = Resources/Art/Images/birds.atlas; sourceTree = "<group>"; };
+		4C209D0518A6EE3F00482A89 /* plane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = plane.atlas; path = Resources/Art/Images/plane.atlas; sourceTree = "<group>"; };
+		4CA7316418A9B174002FBA4B /* Engines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engines.h; path = DangerousBirds/Enums/Engines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +128,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310E519918A5A1C900D2EE17 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				310E519A18A5A1D100D2EE17 /* Art */,
+				4C209CEA18A6D7ED00482A89 /* Extra Source Code */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		310E519A18A5A1D100D2EE17 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				3155732718A951F700B3CF81 /* Particles */,
+				4C209D0018A6ED8400482A89 /* Backgrounds */,
+				4C209CFE18A6ECCF00482A89 /* Images */,
+				4C209D0118A6ED8B00482A89 /* Sounds */,
+			);
+			name = Art;
+			sourceTree = "<group>";
+		};
+		310E51A918A5AB6B00D2EE17 /* SKTUtils */ = {
+			isa = PBXGroup;
+			children = (
+				310E51B918A5AC1400D2EE17 /* SKAction+SKTExtras.h */,
+				310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */,
+				310E51BB18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.h */,
+				310E51BC18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m */,
+				310E51BD18A5AC1400D2EE17 /* SKNode+SKTExtras.h */,
+				310E51BE18A5AC1400D2EE17 /* SKNode+SKTExtras.m */,
+				310E51BF18A5AC1400D2EE17 /* SKTAudio.h */,
+				310E51C018A5AC1400D2EE17 /* SKTAudio.m */,
+				310E51C118A5AC1400D2EE17 /* SKTUtils.h */,
+				310E51C218A5AC1400D2EE17 /* SKTUtils.mm */,
+			);
+			name = SKTUtils;
+			sourceTree = "<group>";
+		};
 		312C0F5F18A5987A004B63D5 = {
 			isa = PBXGroup;
 			children = (
@@ -121,16 +199,19 @@
 		312C0F7318A5987A004B63D5 /* DangerousBirds */ = {
 			isa = PBXGroup;
 			children = (
+				3155733118A9844300B3CF81 /* Enums */,
 				312C0F7C18A5987A004B63D5 /* AppDelegate.h */,
 				312C0F7D18A5987A004B63D5 /* AppDelegate.m */,
+				4C209CF718A6DF6F00482A89 /* Entities */,
+				312C0F8A18A5987A004B63D5 /* Images.xcassets */,
 				312C0F7F18A5987A004B63D5 /* Main.storyboard */,
-				312C0F8218A5987A004B63D5 /* ViewController.h */,
-				312C0F8318A5987A004B63D5 /* ViewController.m */,
 				312C0F8518A5987A004B63D5 /* MyScene.h */,
 				312C0F8618A5987A004B63D5 /* MyScene.m */,
-				312C0F8818A5987A004B63D5 /* Spaceship.png */,
-				312C0F8A18A5987A004B63D5 /* Images.xcassets */,
+				310E519918A5A1C900D2EE17 /* Resources */,
+				310E51A918A5AB6B00D2EE17 /* SKTUtils */,
 				312C0F7418A5987A004B63D5 /* Supporting Files */,
+				312C0F8218A5987A004B63D5 /* ViewController.h */,
+				312C0F8318A5987A004B63D5 /* ViewController.m */,
 			);
 			path = DangerousBirds;
 			sourceTree = "<group>";
@@ -162,6 +243,73 @@
 				312C0F9A18A5987A004B63D5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3155732718A951F700B3CF81 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				3155732818A9522200B3CF81 /* smoke.sks */,
+				3155732918A9522200B3CF81 /* spark.png */,
+				3155732F18A9617E00B3CF81 /* rain.sks */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
+		3155733118A9844300B3CF81 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				4CA7316418A9B174002FBA4B /* Engines.h */,
+			);
+			name = Enums;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C209CEA18A6D7ED00482A89 /* Extra Source Code */ = {
+			isa = PBXGroup;
+			children = (
+				4C209CF118A6DF6600482A89 /* SKTEffects.h */,
+				4C209CF218A6DF6600482A89 /* SKTEffects.m */,
+				4C209CF318A6DF6600482A89 /* SKTTimingFunctions.h */,
+				4C209CF418A6DF6600482A89 /* SKTTimingFunctions.m */,
+			);
+			name = "Extra Source Code";
+			sourceTree = "<group>";
+		};
+		4C209CF718A6DF6F00482A89 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4C209CF818A6E72C00482A89 /* AnimatingSprite.h */,
+				3155732C18A9539200B3CF81 /* Plane.h */,
+				3155732D18A9539200B3CF81 /* Plane.m */,
+				4C209CF918A6E72C00482A89 /* AnimatingSprite.m */,
+				4C209CFB18A6EA1500482A89 /* Bird.h */,
+				4C209CFC18A6EA1500482A89 /* Bird.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		4C209CFE18A6ECCF00482A89 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4C209D0418A6EE3F00482A89 /* birds.atlas */,
+				4C209D0518A6EE3F00482A89 /* plane.atlas */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		4C209D0018A6ED8400482A89 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				4C209D0218A6EDA700482A89 /* background.png */,
+			);
+			name = Backgrounds;
+			sourceTree = "<group>";
+		};
+		4C209D0118A6ED8B00482A89 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +389,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				312C0F7818A5987A004B63D5 /* InfoPlist.strings in Resources */,
+				4C209D0618A6EE3F00482A89 /* birds.atlas in Resources */,
+				3155733018A9617E00B3CF81 /* rain.sks in Resources */,
+				4C209D0718A6EE3F00482A89 /* plane.atlas in Resources */,
 				312C0F8B18A5987A004B63D5 /* Images.xcassets in Resources */,
-				312C0F8918A5987A004B63D5 /* Spaceship.png in Resources */,
+				4C209D0318A6EDA700482A89 /* background.png in Resources */,
+				3155732B18A9522200B3CF81 /* spark.png in Resources */,
 				312C0F8118A5987A004B63D5 /* Main.storyboard in Resources */,
+				3155732A18A9522200B3CF81 /* smoke.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +415,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C209CFD18A6EA1500482A89 /* Bird.m in Sources */,
 				312C0F8718A5987A004B63D5 /* MyScene.m in Sources */,
+				4C209CF518A6DF6600482A89 /* SKTEffects.m in Sources */,
+				310E51C618A5AC1400D2EE17 /* SKTAudio.m in Sources */,
+				3155732E18A9539200B3CF81 /* Plane.m in Sources */,
 				312C0F8418A5987A004B63D5 /* ViewController.m in Sources */,
+				310E51C418A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m in Sources */,
+				4C209CF618A6DF6600482A89 /* SKTTimingFunctions.m in Sources */,
+				310E51C718A5AC1400D2EE17 /* SKTUtils.mm in Sources */,
+				310E51C318A5AC1400D2EE17 /* SKAction+SKTExtras.m in Sources */,
 				312C0F7E18A5987A004B63D5 /* AppDelegate.m in Sources */,
+				310E51C518A5AC1400D2EE17 /* SKNode+SKTExtras.m in Sources */,
 				312C0F7A18A5987A004B63D5 /* main.m in Sources */,
+				4C209CFA18A6E72C00482A89 /* AnimatingSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +639,7 @@
 				312C0FA318A5987A004B63D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		312C0FA418A5987A004B63D5 /* Build configuration list for PBXNativeTarget "DangerousBirdsTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +648,7 @@
 				312C0FA618A5987A004B63D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
