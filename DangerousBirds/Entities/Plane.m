@@ -14,6 +14,7 @@
 @implementation Plane
 {
     SKEmitterNode *_emitterSmoke;
+    CGFloat _screenWidth;
 }
 
 - (instancetype)initWithScreenWidth:(CGFloat)screenWidth{
@@ -25,7 +26,7 @@
         //self.scale = 0.6;
         self.zPosition = 2;
         self.position = CGPointMake(screenWidth/2, 15+self.size.height/2);
-        
+        _screenWidth = screenWidth;
         CGFloat minDiam = MIN(self.size.width, self.size.height);
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0];
         self.physicsBody.usesPreciseCollisionDetection = YES;
@@ -39,8 +40,7 @@
     return self;
 }
 
-- (void)crashPlane
-{
+- (void)crashPlane{
     CGPoint oldScale = CGPointMake(self.xScale,
                                    self.yScale);
     CGPoint newScale = CGPointMultiplyScalar(oldScale, 0.5f);
@@ -52,13 +52,16 @@
     scaleEffect.timingFunction = SKTTimingFunctionSmoothstep;
     
     [self runAction:[SKAction actionWithEffect:scaleEffect]];
-    
+    NSLog(@"PlaneNodes:\n %@",[self children]);
     [_emitterSmoke removeFromParent];
+    [[self childNodeWithName:@"smoke"] removeFromParent];
+    self.position = CGPointMake(_screenWidth/2, 15+self.size.height/2);
 }
 
 -(void)engineSmokeEngineNumber:(EngineNumber)engineNumber{
     if (_engine1Hit == 0 || _engine2Hit == 0) {
         _emitterSmoke = [SKEmitterNode skt_emitterNamed:@"smoke"];
+        _emitterSmoke.name = @"smoke";
         _emitterSmoke.targetNode = self;
         _emitterSmoke.zPosition = 3;
     }

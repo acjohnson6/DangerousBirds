@@ -115,6 +115,7 @@ static const float BG_POINTS_PER_SEC = 50;
     
     if (_plane.engine1Hit == 2 || _plane.engine2Hit == 2 || _plane.engine3Hit == 2 || _plane.engine4Hit == 2) {
         _gameState = PCGameStateInReloadMenu;
+        [self EndLevel];
         //[_plane crashPlane];
     }
     
@@ -133,7 +134,7 @@ static const float BG_POINTS_PER_SEC = 50;
         }
         case PCGameStateInReloadMenu:
         {
-            [self EndLevel];
+            //[self EndLevel];
             break;
         }
     }
@@ -175,7 +176,6 @@ static const float BG_POINTS_PER_SEC = 50;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
-        NSLog(@"Nodes:\n,%@",[self children]);
         if (_gameState == PCGameStateStartingLevel) {
             _gameState = PCGameStatePlaying;
             [self childNodeWithName:@"titleLabel"].hidden = YES;
@@ -231,7 +231,7 @@ static const float BG_POINTS_PER_SEC = 50;
     if (other.categoryBitMask &
         _plane.physicsBody.collisionBitMask) {
         // 3
-        NSLog(@"Hit"); //Make plane span down towards engine hit
+        //Make plane span down towards engine hit
     }
 }
 
@@ -286,12 +286,12 @@ static const float BG_POINTS_PER_SEC = 50;
     if (!startMsg) {
         startMsg = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         startMsg.name = @"msgLabel";
-        startMsg.text = @"Tap Screen to run!";
-        startMsg.fontSize = 30;
+        startMsg.text = @"Tap Screen to Start!";
+        startMsg.fontSize = 28;
         startMsg.position = CGPointMake(screenWidth/2, screenHeight/2);
         [self addChild: startMsg];
     } else {
-        startMsg.text = @"Tap Screen to run!";
+        startMsg.text = @"Tap Screen to Start!";
         startMsg.hidden = NO;
     }
 }
