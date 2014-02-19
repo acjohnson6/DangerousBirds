@@ -26,12 +26,12 @@
 
 - (instancetype)initWithScreenWidth:(CGFloat)screenWidth{
     SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed: @"plane"];
-    SKTexture *texture = [atlas textureNamed:@"PLANE 8 N"];
+    SKTexture *texture = [atlas textureNamed:@"planeBase"];
     texture.filteringMode = SKTextureFilteringNearest;
     if (self = [super initWithTexture:texture]) {
         //self.scale = 0.6;
         self.name = @"plane";
-        self.zPosition = 2;
+        //self.zPosition = 2; - now emitter is above the plane
         self.position = CGPointMake(screenWidth/2, 15+self.size.height/2);
         _screenWidth = screenWidth;
         
@@ -130,23 +130,15 @@
     engine2.physicsBody.categoryBitMask = 0;
     
     SKTScaleEffect *scaleEffect =
-    [SKTScaleEffect effectWithNode:self duration:1
+    [SKTScaleEffect effectWithNode:self duration:.75
                         startScale:oldScale endScale:newScale];
     
     scaleEffect.timingFunction = SKTTimingFunctionSmoothstep;
     
     SKAction *scaleDown = [SKAction actionWithEffect:scaleEffect];
     
-    SKAction *removePlane = [SKAction skt_afterDelay:1 runBlock:^{
-        
-        [[self childNodeWithName:@"fire1"] removeFromParent];
-        [[self childNodeWithName:@"smoke1"] removeFromParent];
-        [[self childNodeWithName:@"fire2"] removeFromParent];
-        [[self childNodeWithName:@"smoke2"] removeFromParent];
-        
-        //self.hidden = YES;
-        [self removeFromParent];
-    }];
+    SKAction *removePlane = [SKAction performSelector:@selector(removeFromParent)
+                     onTarget:self];
     
     [self runAction:[SKAction sequence:@[scaleDown, removePlane]]];
 }

@@ -97,6 +97,7 @@ static const float BG_POINTS_PER_SEC = 50;
 
 - (void)spawnBird
 {
+    //return;
     if (_gameState == PCGameStatePlaying) {
         bird = [[Bird alloc]init];
         CGPoint birdScenePos = CGPointMake(ScalarRandomRange(bird.size.height/2,
@@ -145,8 +146,7 @@ static const float BG_POINTS_PER_SEC = 50;
                     int randomWeather = lowerBound + arc4random() % (upperBound - lowerBound);
                     
                     switch (randomWeather) {
-                        case 1: case 6: case 8:
-                        {
+                        case 1: case 6: case 8: {
                             SKAction *lightening =
                             [SKAction sequence:@[[SKAction waitForDuration:2],
                                                  [SKAction performSelector:@selector(colorGlitch) onTarget:self],
@@ -156,19 +156,19 @@ static const float BG_POINTS_PER_SEC = 50;
                                                  [SKAction performSelector:@selector(colorGlitch) onTarget:self]]];
                             [self runAction:lightening];
                         }
-                         case 3: case 4:  case 9: case 10:
-                        {
+                        case 3: case 4:  case 9: case 10: {
                             if (![[self children] containsObject:_emitterRain]) {
                                 [self addChild:_emitterRain];
                                 [_emitterRain runAction:[SKAction skt_removeFromParentAfterDelay:10]];
+                                
                             }
                         }
                             break;
-                        case 2: case 5: case 7:
-                        {
+                        case 2: case 5: case 7: {
                             if (![[self children] containsObject:_emitterSnow]) {
                                 [self addChild:_emitterSnow];
                                 [_emitterSnow runAction:[SKAction skt_removeFromParentAfterDelay:10]];
+                                
                             }
                         }
                         default:
@@ -192,15 +192,15 @@ static const float BG_POINTS_PER_SEC = 50;
     
     if(currentMaxAccelX > 0.05){
         newX = currentMaxAccelX * 10;
-        _plane.texture = [SKTexture textureWithImageNamed:@"PLANE 8 R.png"];
+        _plane.texture = [SKTexture textureWithImageNamed:@"planeRight.png"];
     }
     else if(currentMaxAccelX < -0.05){
         newX = currentMaxAccelX*10;
-        _plane.texture = [SKTexture textureWithImageNamed:@"PLANE 8 L.png"];
+        _plane.texture = [SKTexture textureWithImageNamed:@"planeLeft.png"];
     }
     else{
         newX = currentMaxAccelX*10;
-        _plane.texture = [SKTexture textureWithImageNamed:@"PLANE 8 N.png"];
+        _plane.texture = [SKTexture textureWithImageNamed:@"planeBase.png"];
     }
     
     float newXshadow = newX+_planeShadow.position.x;
@@ -300,15 +300,12 @@ static const float BG_POINTS_PER_SEC = 50;
 
 - (void)didEndContact:(SKPhysicsContact *)contact
 {
-    // 1
     SKPhysicsBody *other =
     (contact.bodyA.categoryBitMask == PCPlaneCategory ?
      contact.bodyB : contact.bodyA);
     
-    // 2
     if (other.categoryBitMask &
         _plane.physicsBody.collisionBitMask) {
-        // 3
         //Make plane span down towards engine hit
     }
 }
@@ -410,8 +407,12 @@ static const float BG_POINTS_PER_SEC = 50;
     _emitterPuff.targetNode = self;
     _emitterPuff.zPosition = 3;
     _emitterPuff.position = _plane.position;
-    [_emitterPuff runAction:[SKAction skt_removeFromParentAfterDelay:1]];
-    //[self addChild:_emitterPuff];
+    [self addChild:_emitterPuff];
+    [_emitterPuff runAction:[SKAction skt_removeFromParentAfterDelay:2]];
+    _plane = nil;
+    NSLog(@"\n%@",[self children]);
+    
+    
 }
 
 - (void)colorGlitch
