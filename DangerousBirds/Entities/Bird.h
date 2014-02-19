@@ -10,4 +10,6 @@
 
 @interface Bird : AnimatingSprite
 
+-(void)feathersPuff;
+
 @end

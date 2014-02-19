@@ -33,6 +33,7 @@ typedef NS_ENUM(int32_t, PCGameState)
     PCGameStateInReloadMenu,
 };
 
+@property (nonatomic, copy) void (^gameStartBlock)(BOOL didStart);
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) SKNode *bgLayer;
 @property (strong, nonatomic) SKSpriteNode *planeShadow;

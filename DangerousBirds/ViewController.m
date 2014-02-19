@@ -8,8 +8,18 @@
 
 #import "ViewController.h"
 #import "MyScene.h"
+@import iAd;
 
-@implementation ViewController
+@interface ViewController() <ADBannerViewDelegate>
+
+@property (nonatomic, strong) ADBannerView *bannerView;
+@property (nonatomic, assign) BOOL adLoaded;
+
+@end
+
+@implementation ViewController{
+    MyScene *_scene;
+}
 
 - (void)viewWillLayoutSubviews
 {
@@ -22,11 +32,27 @@
         skView.showsNodeCount = YES;
         
         // Create and configure the scene.
-        SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
+        MyScene * scene = [MyScene sceneWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
-        
+        //self.canDisplayBannerAds = YES;
         // Present the scene.
         [skView presentScene:scene];
+        
+        self.bannerView = [[ADBannerView alloc]initWithAdType:ADAdTypeBanner];
+        self.bannerView.delegate = self;
+        
+        _adView = [[UIView alloc]initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, 50.0f)];
+        [_adView addSubview:self.bannerView];
+        [skView addSubview:_adView];
+        
+        _scene = scene;
+        __weak ViewController *weakSelf = self;
+        _scene.gameStartBlock = ^(BOOL didStart){
+            if (didStart)
+                [weakSelf.adView removeFromSuperview];
+            else
+                [skView addSubview:weakSelf.adView];
+        };
     }
 }
 
@@ -53,6 +79,16 @@
 -(BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@"did load");
+    self.adLoaded = YES;
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    NSLog(@"error in loading banner");
+    self.adLoaded = NO;
 }
 
 

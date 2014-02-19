@@ -8,84 +8,177 @@
 
 #import "Plane.h"
 #import "MyScene.h"
+#import "SKAction+SKTExtras.h"
 #import "SKEmitterNode+SKTExtras.h"
 #import "SKTEffects.h"
+#import "SKSpriteNode+DebugDraw.h"
 
 @implementation Plane
 {
-    SKEmitterNode *_emitterSmoke;
+    SKEmitterNode *_emitterSmoke1;
+    SKEmitterNode *_emitterSmoke2;
+    SKEmitterNode *_emitterFire1;
+    SKEmitterNode *_emitterFire2;
     CGFloat _screenWidth;
+    SKSpriteNode *engine1;
+    SKSpriteNode *engine2;
 }
 
 - (instancetype)initWithScreenWidth:(CGFloat)screenWidth{
-    SKTextureAtlas *atlas =
-    [SKTextureAtlas atlasNamed: @"plane"];
+    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed: @"plane"];
     SKTexture *texture = [atlas textureNamed:@"PLANE 8 N"];
     texture.filteringMode = SKTextureFilteringNearest;
     if (self = [super initWithTexture:texture]) {
         //self.scale = 0.6;
+        self.name = @"plane";
         self.zPosition = 2;
         self.position = CGPointMake(screenWidth/2, 15+self.size.height/2);
         _screenWidth = screenWidth;
-        CGFloat minDiam = MIN(self.size.width, self.size.height);
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0];
+        
+        engine1 = [SKSpriteNode new];
+        CGSize contactSize = CGSizeMake(20, 10);
+        engine1.name = @"engine1";
+        engine1.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:contactSize];
+        [engine1 attachDebugRectWithSize:contactSize];
+        engine1.physicsBody.usesPreciseCollisionDetection = YES;
+        engine1.physicsBody.allowsRotation = NO;
+        engine1.physicsBody.restitution = 1;
+        engine1.physicsBody.friction = 0;
+        engine1.physicsBody.categoryBitMask = PCEngine1Category;
+        engine1.physicsBody.contactTestBitMask = 0xFFFFFFFF;
+        engine1.physicsBody.collisionBitMask = 0;
+        engine1.position = CGPointMake(-30, 30);
+        [self addChild:engine1];
+        
+        engine2 = [SKSpriteNode new];
+        engine2.name = @"engine2";
+        engine2.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:contactSize];
+        [engine2 attachDebugRectWithSize:contactSize];
+        engine2.physicsBody.usesPreciseCollisionDetection = YES;
+        engine2.physicsBody.allowsRotation = NO;
+        engine2.physicsBody.restitution = 1;
+        engine2.physicsBody.friction = 0;
+        engine2.physicsBody.categoryBitMask = PCEngine2Category;
+        engine2.physicsBody.contactTestBitMask = 0xFFFFFFFF;
+        engine2.physicsBody.collisionBitMask = 0;
+        engine2.position = CGPointMake(30, 30);
+        [self addChild:engine2];
+        
+        _emitterSmoke1 = [SKEmitterNode skt_emitterNamed:@"smoke"];
+        _emitterSmoke1.name = @"smoke1";
+        _emitterSmoke1.targetNode = self;
+        _emitterSmoke1.zPosition = 3;
+        _emitterSmoke1.position = CGPointMake(-30.0, 0);
+        
+        _emitterSmoke2 = [SKEmitterNode skt_emitterNamed:@"smoke"];
+        _emitterSmoke2.name = @"smoke2";
+        _emitterSmoke2.targetNode = self;
+        _emitterSmoke2.zPosition = 3;
+        _emitterSmoke2.position = CGPointMake(30.0, 0);
+        
+        _emitterFire1 = [SKEmitterNode skt_emitterNamed:@"fire"];
+        _emitterFire1.name = @"fire1";
+        _emitterFire1.targetNode = self;
+        _emitterFire1.zPosition = 3;
+         _emitterFire1.position = CGPointMake(-30.0, 0);
+        _emitterFire1.hidden = YES;
+        
+        _emitterFire2 = [SKEmitterNode skt_emitterNamed:@"fire"];
+        _emitterFire2.name = @"fire2";
+        _emitterFire2.targetNode = self;
+        _emitterFire2.zPosition = 3;
+        _emitterFire2.position = CGPointMake(30.0, 0);
+        _emitterFire2.hidden = YES;
+        
+        /*_emitterFire1.hidden = YES;
+        _emitterFire2.hidden = YES;
+        [self addChild:_emitterFire1];
+        [self addChild:_emitterFire2];*/
+        
+        /*CGFloat minDiam = MIN(self.size.width, self.size.height);
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0];*/
+        
+        //CGMutablePathRef engine1Path = CGPathCreateMutable();
+        
+        /*CGPathMoveToPoint(trianglePath, nil, -_triangle.size.width/2, -
+                          _triangle.size.height/2);
+        //3
+        CGPathAddLineToPoint(trianglePath, nil, _triangle.size.width/2, -_triangle.size.height/2); CGPathAddLineToPoint(trianglePath, nil, 0, _triangle.size.height/2);
+        
+        CGPathAddLineToPoint(trianglePath, nil, -_triangle.size.width/2, - _triangle.size.height/2);*/
+        
+        
+        /*self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:contactSize];
+        [self attachDebugRectWithSize:contactSize];
         self.physicsBody.usesPreciseCollisionDetection = YES;
         self.physicsBody.allowsRotation = NO;
         self.physicsBody.restitution = 1;
         self.physicsBody.friction = 0;
         self.physicsBody.categoryBitMask = PCPlaneCategory;
         self.physicsBody.contactTestBitMask = 0xFFFFFFFF;
-        self.physicsBody.collisionBitMask = PCBirdCategory;
+        self.physicsBody.collisionBitMask = PCBirdCategory;*/
     }
     return self;
 }
 
 - (void)crashPlane{
-    CGPoint oldScale = CGPointMake(self.xScale,
-                                   self.yScale);
-    CGPoint newScale = CGPointMultiplyScalar(oldScale, 0.5f);
+    [self removeAllActions];
+
+    CGPoint oldScale = CGPointMake(self.xScale,self.yScale);
+    CGPoint newScale = CGPointMultiplyScalar(oldScale, 0.0f);
+    engine1.physicsBody.categoryBitMask = 0;
+    engine2.physicsBody.categoryBitMask = 0;
     
     SKTScaleEffect *scaleEffect =
-    [SKTScaleEffect effectWithNode:self duration:2.0
-                        startScale:newScale endScale:oldScale];
+    [SKTScaleEffect effectWithNode:self duration:1
+                        startScale:oldScale endScale:newScale];
     
     scaleEffect.timingFunction = SKTTimingFunctionSmoothstep;
     
-    [self runAction:[SKAction actionWithEffect:scaleEffect]];
-    NSLog(@"PlaneNodes:\n %@",[self children]);
-    [_emitterSmoke removeFromParent];
-    [[self childNodeWithName:@"smoke"] removeFromParent];
-    self.position = CGPointMake(_screenWidth/2, 15+self.size.height/2);
+    SKAction *scaleDown = [SKAction actionWithEffect:scaleEffect];
+    
+    SKAction *removePlane = [SKAction skt_afterDelay:1 runBlock:^{
+        
+        [[self childNodeWithName:@"fire1"] removeFromParent];
+        [[self childNodeWithName:@"smoke1"] removeFromParent];
+        [[self childNodeWithName:@"fire2"] removeFromParent];
+        [[self childNodeWithName:@"smoke2"] removeFromParent];
+        
+        //self.hidden = YES;
+        [self removeFromParent];
+    }];
+    
+    [self runAction:[SKAction sequence:@[scaleDown, removePlane]]];
 }
 
 -(void)engineSmokeEngineNumber:(EngineNumber)engineNumber{
-    if (_engine1Hit == 0 || _engine2Hit == 0) {
-        _emitterSmoke = [SKEmitterNode skt_emitterNamed:@"smoke"];
-        _emitterSmoke.name = @"smoke";
-        _emitterSmoke.targetNode = self;
-        _emitterSmoke.zPosition = 3;
-    }
-    
     switch (engineNumber) {
         case EngineNumber1:
             _engine1Hit++;
             if (_engine1Hit == 1) {
-                [self addChild:_emitterSmoke];
-                _emitterSmoke.position = CGPointMake(-30.0, 0);
+                if (![[self children]containsObject:_emitterSmoke1]) {
+                    [self addChild:_emitterSmoke1];
+                }
             } else if(_engine1Hit == 2) {
-                //Make fire on engine
+                if (![[self children]containsObject:_emitterFire1]) {
+                    [self addChild:_emitterFire1];
+                }
             }
             break;
         case EngineNumber2:
             _engine2Hit++;
             if (_engine2Hit == 1) {
-                [self addChild:_emitterSmoke];
-                //_emitterSmoke.position = blah blah
+                _emitterSmoke2.hidden = NO;
+                if (![[self children]containsObject:_emitterSmoke2]) {
+                    [self addChild:_emitterSmoke2];
+                }
             } else if(_engine2Hit == 2) {
-                //Make fire on engine
+                if (![[self children]containsObject:_emitterFire2]) {
+                    [self addChild:_emitterFire2];
+                }
             }
             break;
-        case EngineNumber3:
+        /*case EngineNumber3:
             _engine3Hit++;
             if (_engine3Hit == 1) {
                 [self addChild:_emitterSmoke];
@@ -102,7 +195,7 @@
             } else if(_engine4Hit == 2) {
                 //Make fire on engine
             }
-            break;
+            break;*/
         default:
             break;
     }

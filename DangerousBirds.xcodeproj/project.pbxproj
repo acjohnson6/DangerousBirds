@@ -28,10 +28,17 @@
 		312C0F9418A5987A004B63D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312C0F6F18A5987A004B63D5 /* UIKit.framework */; };
 		312C0F9C18A5987A004B63D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 312C0F9A18A5987A004B63D5 /* InfoPlist.strings */; };
 		312C0F9E18A5987A004B63D5 /* DangerousBirdsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C0F9D18A5987A004B63D5 /* DangerousBirdsTests.m */; };
+		3136CCB118B3EC8C00017A30 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3136CCB018B3EC8C00017A30 /* iAd.framework */; };
 		3155732A18A9522200B3CF81 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3155732818A9522200B3CF81 /* smoke.sks */; };
 		3155732B18A9522200B3CF81 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3155732918A9522200B3CF81 /* spark.png */; };
 		3155732E18A9539200B3CF81 /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = 3155732D18A9539200B3CF81 /* Plane.m */; };
 		3155733018A9617E00B3CF81 /* rain.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3155732F18A9617E00B3CF81 /* rain.sks */; };
+		3155733418AA933500B3CF81 /* fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3155733318AA933500B3CF81 /* fire.sks */; };
+		31D128B718AACD4000940B0C /* puff.sks in Resources */ = {isa = PBXBuildFile; fileRef = 31D128B618AACD4000940B0C /* puff.sks */; };
+		31D128BA18ABF66600940B0C /* SKSpriteNode+DebugDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D128B918ABF66600940B0C /* SKSpriteNode+DebugDraw.m */; };
+		31F302AD18AEA121009D764F /* feather.png in Resources */ = {isa = PBXBuildFile; fileRef = 31F302AC18AEA121009D764F /* feather.png */; };
+		31F302B718AEA3FF009D764F /* snow.sks in Resources */ = {isa = PBXBuildFile; fileRef = 31F302B618AEA3FF009D764F /* snow.sks */; };
+		31F302B918AED548009D764F /* feathers.sks in Resources */ = {isa = PBXBuildFile; fileRef = 31F302B818AED548009D764F /* feathers.sks */; };
 		4C209CF518A6DF6600482A89 /* SKTEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CF218A6DF6600482A89 /* SKTEffects.m */; };
 		4C209CF618A6DF6600482A89 /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CF418A6DF6600482A89 /* SKTTimingFunctions.m */; };
 		4C209CFA18A6E72C00482A89 /* AnimatingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CF918A6E72C00482A89 /* AnimatingSprite.m */; };
@@ -84,11 +91,19 @@
 		312C0F9918A5987A004B63D5 /* DangerousBirdsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DangerousBirdsTests-Info.plist"; sourceTree = "<group>"; };
 		312C0F9B18A5987A004B63D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		312C0F9D18A5987A004B63D5 /* DangerousBirdsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DangerousBirdsTests.m; sourceTree = "<group>"; };
+		3136CCB018B3EC8C00017A30 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3155732818A9522200B3CF81 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = smoke.sks; path = Resources/Particles/smoke.sks; sourceTree = "<group>"; };
 		3155732918A9522200B3CF81 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Resources/Particles/spark.png; sourceTree = "<group>"; };
 		3155732C18A9539200B3CF81 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = Entities/Plane.h; sourceTree = "<group>"; };
 		3155732D18A9539200B3CF81 /* Plane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plane.m; path = Entities/Plane.m; sourceTree = "<group>"; };
 		3155732F18A9617E00B3CF81 /* rain.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = rain.sks; path = Resources/Particles/rain.sks; sourceTree = "<group>"; };
+		3155733318AA933500B3CF81 /* fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = fire.sks; path = Resources/Particles/fire.sks; sourceTree = "<group>"; };
+		31D128B618AACD4000940B0C /* puff.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = puff.sks; path = Resources/Particles/puff.sks; sourceTree = "<group>"; };
+		31D128B818ABF66600940B0C /* SKSpriteNode+DebugDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKSpriteNode+DebugDraw.h"; path = "Resources/Extra Source Code/SKSpriteNode+DebugDraw.h"; sourceTree = "<group>"; };
+		31D128B918ABF66600940B0C /* SKSpriteNode+DebugDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKSpriteNode+DebugDraw.m"; path = "Resources/Extra Source Code/SKSpriteNode+DebugDraw.m"; sourceTree = "<group>"; };
+		31F302AC18AEA121009D764F /* feather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = feather.png; path = Resources/Art/Images/feather.png; sourceTree = "<group>"; };
+		31F302B618AEA3FF009D764F /* snow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = snow.sks; path = Resources/Particles/snow.sks; sourceTree = "<group>"; };
+		31F302B818AED548009D764F /* feathers.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = feathers.sks; path = Resources/Particles/feathers.sks; sourceTree = "<group>"; };
 		4C209CF118A6DF6600482A89 /* SKTEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKTEffects.h; path = "Resources/Extra Source Code/SKTEffects.h"; sourceTree = "<group>"; };
 		4C209CF218A6DF6600482A89 /* SKTEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKTEffects.m; path = "Resources/Extra Source Code/SKTEffects.m"; sourceTree = "<group>"; };
 		4C209CF318A6DF6600482A89 /* SKTTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKTTimingFunctions.h; path = "Resources/Extra Source Code/SKTTimingFunctions.h"; sourceTree = "<group>"; };
@@ -108,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3136CCB118B3EC8C00017A30 /* iAd.framework in Frameworks */,
 				312C0F6E18A5987A004B63D5 /* CoreGraphics.framework in Frameworks */,
 				312C0F7018A5987A004B63D5 /* UIKit.framework in Frameworks */,
 				312C0F7218A5987A004B63D5 /* SpriteKit.framework in Frameworks */,
@@ -187,6 +203,7 @@
 		312C0F6A18A5987A004B63D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3136CCB018B3EC8C00017A30 /* iAd.framework */,
 				312C0F6B18A5987A004B63D5 /* Foundation.framework */,
 				312C0F6D18A5987A004B63D5 /* CoreGraphics.framework */,
 				312C0F6F18A5987A004B63D5 /* UIKit.framework */,
@@ -248,9 +265,13 @@
 		3155732718A951F700B3CF81 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
-				3155732818A9522200B3CF81 /* smoke.sks */,
-				3155732918A9522200B3CF81 /* spark.png */,
+				3155733318AA933500B3CF81 /* fire.sks */,
+				31D128B618AACD4000940B0C /* puff.sks */,
 				3155732F18A9617E00B3CF81 /* rain.sks */,
+				3155732818A9522200B3CF81 /* smoke.sks */,
+				31F302B618AEA3FF009D764F /* snow.sks */,
+				3155732918A9522200B3CF81 /* spark.png */,
+				31F302B818AED548009D764F /* feathers.sks */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -271,6 +292,8 @@
 				4C209CF218A6DF6600482A89 /* SKTEffects.m */,
 				4C209CF318A6DF6600482A89 /* SKTTimingFunctions.h */,
 				4C209CF418A6DF6600482A89 /* SKTTimingFunctions.m */,
+				31D128B818ABF66600940B0C /* SKSpriteNode+DebugDraw.h */,
+				31D128B918ABF66600940B0C /* SKSpriteNode+DebugDraw.m */,
 			);
 			name = "Extra Source Code";
 			sourceTree = "<group>";
@@ -279,11 +302,11 @@
 			isa = PBXGroup;
 			children = (
 				4C209CF818A6E72C00482A89 /* AnimatingSprite.h */,
-				3155732C18A9539200B3CF81 /* Plane.h */,
-				3155732D18A9539200B3CF81 /* Plane.m */,
 				4C209CF918A6E72C00482A89 /* AnimatingSprite.m */,
 				4C209CFB18A6EA1500482A89 /* Bird.h */,
 				4C209CFC18A6EA1500482A89 /* Bird.m */,
+				3155732C18A9539200B3CF81 /* Plane.h */,
+				3155732D18A9539200B3CF81 /* Plane.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -291,6 +314,7 @@
 		4C209CFE18A6ECCF00482A89 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				31F302AC18AEA121009D764F /* feather.png */,
 				4C209D0418A6EE3F00482A89 /* birds.atlas */,
 				4C209D0518A6EE3F00482A89 /* plane.atlas */,
 			);
@@ -392,9 +416,14 @@
 				4C209D0618A6EE3F00482A89 /* birds.atlas in Resources */,
 				3155733018A9617E00B3CF81 /* rain.sks in Resources */,
 				4C209D0718A6EE3F00482A89 /* plane.atlas in Resources */,
+				31D128B718AACD4000940B0C /* puff.sks in Resources */,
+				31F302AD18AEA121009D764F /* feather.png in Resources */,
 				312C0F8B18A5987A004B63D5 /* Images.xcassets in Resources */,
 				4C209D0318A6EDA700482A89 /* background.png in Resources */,
+				31F302B718AEA3FF009D764F /* snow.sks in Resources */,
+				31F302B918AED548009D764F /* feathers.sks in Resources */,
 				3155732B18A9522200B3CF81 /* spark.png in Resources */,
+				3155733418AA933500B3CF81 /* fire.sks in Resources */,
 				312C0F8118A5987A004B63D5 /* Main.storyboard in Resources */,
 				3155732A18A9522200B3CF81 /* smoke.sks in Resources */,
 			);
@@ -417,6 +446,7 @@
 			files = (
 				4C209CFD18A6EA1500482A89 /* Bird.m in Sources */,
 				312C0F8718A5987A004B63D5 /* MyScene.m in Sources */,
+				31D128BA18ABF66600940B0C /* SKSpriteNode+DebugDraw.m in Sources */,
 				4C209CF518A6DF6600482A89 /* SKTEffects.m in Sources */,
 				310E51C618A5AC1400D2EE17 /* SKTAudio.m in Sources */,
 				3155732E18A9539200B3CF81 /* Plane.m in Sources */,

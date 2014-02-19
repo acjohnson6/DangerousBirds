@@ -8,8 +8,12 @@
 
 #import "Bird.h"
 #import "MyScene.h"
+#import "SKEmitterNode+SKTExtras.h"
 
 @implementation Bird
+{
+    
+}
 
 #pragma mark Animating Sprite Creation
 + (void)initialize
@@ -31,6 +35,7 @@
     if (self = [super initWithTexture:texture]) {
         self.name = @"bird";
         [self setScale:.5];
+        self.zPosition = 4.0f;
         CGFloat minDiam = MIN(self.size.width, self.size.height);
         minDiam = MAX(minDiam-8, 8);
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0];
@@ -47,7 +52,6 @@
                                                          scene.size.height-self.size.height/2), scene.size.height + self.size.height/2);
     //Check ito adding this
     scene.position = [scene convertPoint:birdScenePos toNode:scene.bgLayer];
-    //[_bgLayer addChild:bird];
     
     SKAction *actionMove =
     [SKAction moveByX:0 y:-scene.size.height + self.size.height duration:2.0];
@@ -64,6 +68,11 @@
 static SKAction *sharedMoveDown = nil;
 - (SKAction*)moveDown {
     return sharedMoveDown;
+}
+
+-(void)feathersPuff{
+    //[self removeAllActions];
+    [self removeFromParent];
 }
 
 
