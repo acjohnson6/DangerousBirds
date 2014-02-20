@@ -29,6 +29,7 @@
 		312C0F9C18A5987A004B63D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 312C0F9A18A5987A004B63D5 /* InfoPlist.strings */; };
 		312C0F9E18A5987A004B63D5 /* DangerousBirdsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 312C0F9D18A5987A004B63D5 /* DangerousBirdsTests.m */; };
 		3136CCB118B3EC8C00017A30 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3136CCB018B3EC8C00017A30 /* iAd.framework */; };
+		3136CCB318B67FFD00017A30 /* plane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3136CCB218B67FFD00017A30 /* plane.atlas */; };
 		3155732A18A9522200B3CF81 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3155732818A9522200B3CF81 /* smoke.sks */; };
 		3155732B18A9522200B3CF81 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3155732918A9522200B3CF81 /* spark.png */; };
 		3155732E18A9539200B3CF81 /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = 3155732D18A9539200B3CF81 /* Plane.m */; };
@@ -45,7 +46,6 @@
 		4C209CFD18A6EA1500482A89 /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C209CFC18A6EA1500482A89 /* Bird.m */; };
 		4C209D0318A6EDA700482A89 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C209D0218A6EDA700482A89 /* background.png */; };
 		4C209D0618A6EE3F00482A89 /* birds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4C209D0418A6EE3F00482A89 /* birds.atlas */; };
-		4C209D0718A6EE3F00482A89 /* plane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 4C209D0518A6EE3F00482A89 /* plane.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +92,7 @@
 		312C0F9B18A5987A004B63D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		312C0F9D18A5987A004B63D5 /* DangerousBirdsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DangerousBirdsTests.m; sourceTree = "<group>"; };
 		3136CCB018B3EC8C00017A30 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		3136CCB218B67FFD00017A30 /* plane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = plane.atlas; path = Resources/Art/Images/plane.atlas; sourceTree = "<group>"; };
 		3155732818A9522200B3CF81 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = smoke.sks; path = Resources/Particles/smoke.sks; sourceTree = "<group>"; };
 		3155732918A9522200B3CF81 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Resources/Particles/spark.png; sourceTree = "<group>"; };
 		3155732C18A9539200B3CF81 /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = Entities/Plane.h; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		4C209CFC18A6EA1500482A89 /* Bird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bird.m; path = Entities/Bird.m; sourceTree = "<group>"; };
 		4C209D0218A6EDA700482A89 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/Art/Background/background.png; sourceTree = "<group>"; };
 		4C209D0418A6EE3F00482A89 /* birds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = birds.atlas; path = Resources/Art/Images/birds.atlas; sourceTree = "<group>"; };
-		4C209D0518A6EE3F00482A89 /* plane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = plane.atlas; path = Resources/Art/Images/plane.atlas; sourceTree = "<group>"; };
 		4CA7316418A9B174002FBA4B /* Engines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engines.h; path = DangerousBirds/Enums/Engines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -314,9 +314,9 @@
 		4C209CFE18A6ECCF00482A89 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				31F302AC18AEA121009D764F /* feather.png */,
 				4C209D0418A6EE3F00482A89 /* birds.atlas */,
-				4C209D0518A6EE3F00482A89 /* plane.atlas */,
+				31F302AC18AEA121009D764F /* feather.png */,
+				3136CCB218B67FFD00017A30 /* plane.atlas */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -412,10 +412,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3136CCB318B67FFD00017A30 /* plane.atlas in Resources */,
 				312C0F7818A5987A004B63D5 /* InfoPlist.strings in Resources */,
 				4C209D0618A6EE3F00482A89 /* birds.atlas in Resources */,
 				3155733018A9617E00B3CF81 /* rain.sks in Resources */,
-				4C209D0718A6EE3F00482A89 /* plane.atlas in Resources */,
 				31D128B718AACD4000940B0C /* puff.sks in Resources */,
 				31F302AD18AEA121009D764F /* feather.png in Resources */,
 				312C0F8B18A5987A004B63D5 /* Images.xcassets in Resources */,
