@@ -190,17 +190,27 @@ static const float BG_POINTS_PER_SEC = 50;
     float newY = 90.0;
     float newX = 0;
     
+    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed: @"plane"];
+    
+    SKTexture *textureBase = [atlas textureNamed:@"planeBase"];
+    SKTexture *textureLeft = [atlas textureNamed:@"planeLeft"];
+    SKTexture *textureRight = [atlas textureNamed:@"planeRight"];
+    
+    textureBase.filteringMode = SKTextureFilteringNearest;
+    textureLeft.filteringMode = SKTextureFilteringNearest;
+    textureRight.filteringMode = SKTextureFilteringNearest;
+    
     if(currentMaxAccelX > 0.05){
         newX = currentMaxAccelX * 10;
-        _plane.texture = [SKTexture textureWithImageNamed:@"planeRight.png"];
+        _plane.texture = textureRight;
     }
     else if(currentMaxAccelX < -0.05){
         newX = currentMaxAccelX*10;
-        _plane.texture = [SKTexture textureWithImageNamed:@"planeLeft.png"];
+        _plane.texture = textureLeft;
     }
     else{
         newX = currentMaxAccelX*10;
-        _plane.texture = [SKTexture textureWithImageNamed:@"planeBase.png"];
+        _plane.texture = textureBase;
     }
     
     float newXshadow = newX+_planeShadow.position.x;
@@ -272,7 +282,7 @@ static const float BG_POINTS_PER_SEC = 50;
         _emitterFeathers.name = @"feathers";
         _emitterFeathers.targetNode = self;
         _emitterFeathers.zPosition = 5;
-        CGPoint point = CGPointMake(-30, 70);
+        CGPoint point = CGPointMake(-70, 70);
         _emitterFeathers.position = point;
         [_plane addChild:_emitterFeathers];
         Bird *hitBird = (Bird *)other1.node;
@@ -289,7 +299,7 @@ static const float BG_POINTS_PER_SEC = 50;
         _emitterFeathers.name = @"feathers";
         _emitterFeathers.targetNode = self;
         _emitterFeathers.zPosition = 5;
-        CGPoint point = CGPointMake(30, 70);
+        CGPoint point = CGPointMake(70, 70);
         _emitterFeathers.position = point;
         [_plane addChild:_emitterFeathers];
         Bird *hitBird = (Bird *)other2.node;
@@ -391,7 +401,6 @@ static const float BG_POINTS_PER_SEC = 50;
         [[self childNodeWithName:@"rain"] removeFromParent];
     if ([[self children] containsObject:_emitterSnow])
         [[self childNodeWithName:@"snow"] removeFromParent];
-    
 }
 
 -(void)EndLevel{
@@ -402,6 +411,10 @@ static const float BG_POINTS_PER_SEC = 50;
     label.text = @"Try Again?";
     label.hidden = NO;
     
+    [_bgLayer enumerateChildNodesWithName:@"bird" usingBlock:^(SKNode *node, BOOL *stop) {
+        [node removeFromParent];
+    }];
+    
     _emitterPuff = [SKEmitterNode skt_emitterNamed:@"puff"];
     _emitterPuff.name = @"puff";
     _emitterPuff.targetNode = self;
@@ -410,9 +423,6 @@ static const float BG_POINTS_PER_SEC = 50;
     [self addChild:_emitterPuff];
     [_emitterPuff runAction:[SKAction skt_removeFromParentAfterDelay:2]];
     _plane = nil;
-    NSLog(@"\n%@",[self children]);
-    
-    
 }
 
 - (void)colorGlitch

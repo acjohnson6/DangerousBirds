@@ -9,11 +9,9 @@
 #import "Bird.h"
 #import "MyScene.h"
 #import "SKEmitterNode+SKTExtras.h"
+#import "SKSpriteNode+DebugDraw.h"
 
 @implementation Bird
-{
-    
-}
 
 #pragma mark Animating Sprite Creation
 + (void)initialize
@@ -36,9 +34,14 @@
         self.name = @"bird";
         [self setScale:.5];
         self.zPosition = 4.0f;
-        CGFloat minDiam = MIN(self.size.width, self.size.height);
+        self.zRotation = M_PI_4 * 6;
+        /*CGFloat minDiam = MIN(self.size.width, self.size.height);
         minDiam = MAX(minDiam-8, 8);
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0];
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0];*/
+        
+        CGSize contactSize = CGSizeMake(self.size.width *.5, self.size.height * .5);
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:contactSize];
+        [self attachDebugRectWithSize:contactSize];
         self.physicsBody.categoryBitMask = PCBirdCategory;
         self.physicsBody.collisionBitMask = 0;
     }

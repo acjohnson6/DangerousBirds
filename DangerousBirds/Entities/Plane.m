@@ -29,14 +29,14 @@
     SKTexture *texture = [atlas textureNamed:@"planeBase"];
     texture.filteringMode = SKTextureFilteringNearest;
     if (self = [super initWithTexture:texture]) {
-        //self.scale = 0.6;
+        self.scale = 0.5;
         self.name = @"plane";
         //self.zPosition = 2; - now emitter is above the plane
         self.position = CGPointMake(screenWidth/2, 15+self.size.height/2);
         _screenWidth = screenWidth;
         
         engine1 = [SKSpriteNode new];
-        CGSize contactSize = CGSizeMake(20, 10);
+        CGSize contactSize = CGSizeMake(30, 5);
         engine1.name = @"engine1";
         engine1.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:contactSize];
         [engine1 attachDebugRectWithSize:contactSize];
@@ -47,7 +47,7 @@
         engine1.physicsBody.categoryBitMask = PCEngine1Category;
         engine1.physicsBody.contactTestBitMask = 0xFFFFFFFF;
         engine1.physicsBody.collisionBitMask = 0;
-        engine1.position = CGPointMake(-30, 30);
+        engine1.position = CGPointMake(-70, 40);
         [self addChild:engine1];
         
         engine2 = [SKSpriteNode new];
@@ -61,33 +61,33 @@
         engine2.physicsBody.categoryBitMask = PCEngine2Category;
         engine2.physicsBody.contactTestBitMask = 0xFFFFFFFF;
         engine2.physicsBody.collisionBitMask = 0;
-        engine2.position = CGPointMake(30, 30);
+        engine2.position = CGPointMake(70, 40);
         [self addChild:engine2];
         
         _emitterSmoke1 = [SKEmitterNode skt_emitterNamed:@"smoke"];
         _emitterSmoke1.name = @"smoke1";
         _emitterSmoke1.targetNode = self;
         _emitterSmoke1.zPosition = 3;
-        _emitterSmoke1.position = CGPointMake(-30.0, 0);
+        _emitterSmoke1.position = CGPointMake(-70.0, 30);
         
         _emitterSmoke2 = [SKEmitterNode skt_emitterNamed:@"smoke"];
         _emitterSmoke2.name = @"smoke2";
         _emitterSmoke2.targetNode = self;
         _emitterSmoke2.zPosition = 3;
-        _emitterSmoke2.position = CGPointMake(30.0, 0);
+        _emitterSmoke2.position = CGPointMake(70.0, 30);
         
         _emitterFire1 = [SKEmitterNode skt_emitterNamed:@"fire"];
         _emitterFire1.name = @"fire1";
         _emitterFire1.targetNode = self;
         _emitterFire1.zPosition = 3;
-         _emitterFire1.position = CGPointMake(-30.0, 0);
+         _emitterFire1.position = CGPointMake(-70.0, 30);
         _emitterFire1.hidden = YES;
         
         _emitterFire2 = [SKEmitterNode skt_emitterNamed:@"fire"];
         _emitterFire2.name = @"fire2";
         _emitterFire2.targetNode = self;
         _emitterFire2.zPosition = 3;
-        _emitterFire2.position = CGPointMake(30.0, 0);
+        _emitterFire2.position = CGPointMake(70.0, 30);
         _emitterFire2.hidden = YES;
         
         /*_emitterFire1.hidden = YES;
