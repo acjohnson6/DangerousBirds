@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		310A4D7818B6896D00EE01FD /* plane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 310A4D7718B6896D00EE01FD /* plane.atlas */; };
+		310A4D7D18B8012900EE01FD /* feathersBlue.sks in Resources */ = {isa = PBXBuildFile; fileRef = 310A4D7918B8012900EE01FD /* feathersBlue.sks */; };
+		310A4D7E18B8012900EE01FD /* feathersBrown.sks in Resources */ = {isa = PBXBuildFile; fileRef = 310A4D7A18B8012900EE01FD /* feathersBrown.sks */; };
+		310A4D7F18B8012900EE01FD /* feathersGreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 310A4D7B18B8012900EE01FD /* feathersGreen.sks */; };
+		310A4D8018B8012900EE01FD /* feathersRed.sks in Resources */ = {isa = PBXBuildFile; fileRef = 310A4D7C18B8012900EE01FD /* feathersRed.sks */; };
+		310A4D8418BD40B700EE01FD /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 310A4D8318BD40B700EE01FD /* AppUtil.m */; };
+		310A4D8718BD41EA00EE01FD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 310A4D8618BD41EA00EE01FD /* Constants.m */; };
 		310E51C318A5AC1400D2EE17 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */; };
 		310E51C418A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BC18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m */; };
 		310E51C518A5AC1400D2EE17 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BE18A5AC1400D2EE17 /* SKNode+SKTExtras.m */; };
@@ -60,6 +66,14 @@
 
 /* Begin PBXFileReference section */
 		310A4D7718B6896D00EE01FD /* plane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = plane.atlas; path = Resources/Art/Images/plane.atlas; sourceTree = "<group>"; };
+		310A4D7918B8012900EE01FD /* feathersBlue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = feathersBlue.sks; path = Resources/Particles/feathersBlue.sks; sourceTree = "<group>"; };
+		310A4D7A18B8012900EE01FD /* feathersBrown.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = feathersBrown.sks; path = Resources/Particles/feathersBrown.sks; sourceTree = "<group>"; };
+		310A4D7B18B8012900EE01FD /* feathersGreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = feathersGreen.sks; path = Resources/Particles/feathersGreen.sks; sourceTree = "<group>"; };
+		310A4D7C18B8012900EE01FD /* feathersRed.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = feathersRed.sks; path = Resources/Particles/feathersRed.sks; sourceTree = "<group>"; };
+		310A4D8218BD40B700EE01FD /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppUtil.h; path = Util/AppUtil.h; sourceTree = "<group>"; };
+		310A4D8318BD40B700EE01FD /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppUtil.m; path = Util/AppUtil.m; sourceTree = "<group>"; };
+		310A4D8518BD41EA00EE01FD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Util/Constants.h; sourceTree = "<group>"; };
+		310A4D8618BD41EA00EE01FD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Util/Constants.m; sourceTree = "<group>"; };
 		310E51B918A5AC1400D2EE17 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKAction+SKTExtras.h"; path = "SKTUtils/SKAction+SKTExtras.h"; sourceTree = "<group>"; };
 		310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKAction+SKTExtras.m"; path = "SKTUtils/SKAction+SKTExtras.m"; sourceTree = "<group>"; };
 		310E51BB18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKEmitterNode+SKTExtras.h"; path = "SKTUtils/SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
@@ -144,6 +158,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310A4D8118BD409100EE01FD /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				310A4D8218BD40B700EE01FD /* AppUtil.h */,
+				310A4D8318BD40B700EE01FD /* AppUtil.m */,
+				310A4D8518BD41EA00EE01FD /* Constants.h */,
+				310A4D8618BD41EA00EE01FD /* Constants.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		310E519918A5A1C900D2EE17 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,10 +241,10 @@
 		312C0F7318A5987A004B63D5 /* DangerousBirds */ = {
 			isa = PBXGroup;
 			children = (
-				3155733118A9844300B3CF81 /* Enums */,
 				312C0F7C18A5987A004B63D5 /* AppDelegate.h */,
 				312C0F7D18A5987A004B63D5 /* AppDelegate.m */,
 				4C209CF718A6DF6F00482A89 /* Entities */,
+				3155733118A9844300B3CF81 /* Enums */,
 				312C0F8A18A5987A004B63D5 /* Images.xcassets */,
 				312C0F7F18A5987A004B63D5 /* Main.storyboard */,
 				312C0F8518A5987A004B63D5 /* MyScene.h */,
@@ -227,6 +252,7 @@
 				310E519918A5A1C900D2EE17 /* Resources */,
 				310E51A918A5AB6B00D2EE17 /* SKTUtils */,
 				312C0F7418A5987A004B63D5 /* Supporting Files */,
+				310A4D8118BD409100EE01FD /* Util */,
 				312C0F8218A5987A004B63D5 /* ViewController.h */,
 				312C0F8318A5987A004B63D5 /* ViewController.m */,
 			);
@@ -265,13 +291,17 @@
 		3155732718A951F700B3CF81 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				31F302B818AED548009D764F /* feathers.sks */,
+				310A4D7918B8012900EE01FD /* feathersBlue.sks */,
+				310A4D7A18B8012900EE01FD /* feathersBrown.sks */,
+				310A4D7B18B8012900EE01FD /* feathersGreen.sks */,
+				310A4D7C18B8012900EE01FD /* feathersRed.sks */,
 				3155733318AA933500B3CF81 /* fire.sks */,
 				31D128B618AACD4000940B0C /* puff.sks */,
 				3155732F18A9617E00B3CF81 /* rain.sks */,
 				3155732818A9522200B3CF81 /* smoke.sks */,
 				31F302B618AEA3FF009D764F /* snow.sks */,
 				3155732918A9522200B3CF81 /* spark.png */,
-				31F302B818AED548009D764F /* feathers.sks */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -415,17 +445,21 @@
 				310A4D7818B6896D00EE01FD /* plane.atlas in Resources */,
 				312C0F7818A5987A004B63D5 /* InfoPlist.strings in Resources */,
 				4C209D0618A6EE3F00482A89 /* birds.atlas in Resources */,
+				310A4D7F18B8012900EE01FD /* feathersGreen.sks in Resources */,
 				3155733018A9617E00B3CF81 /* rain.sks in Resources */,
 				31D128B718AACD4000940B0C /* puff.sks in Resources */,
 				31F302AD18AEA121009D764F /* feather.png in Resources */,
+				310A4D7D18B8012900EE01FD /* feathersBlue.sks in Resources */,
 				312C0F8B18A5987A004B63D5 /* Images.xcassets in Resources */,
 				4C209D0318A6EDA700482A89 /* background.png in Resources */,
 				31F302B718AEA3FF009D764F /* snow.sks in Resources */,
+				310A4D7E18B8012900EE01FD /* feathersBrown.sks in Resources */,
 				31F302B918AED548009D764F /* feathers.sks in Resources */,
 				3155732B18A9522200B3CF81 /* spark.png in Resources */,
 				3155733418AA933500B3CF81 /* fire.sks in Resources */,
 				312C0F8118A5987A004B63D5 /* Main.storyboard in Resources */,
 				3155732A18A9522200B3CF81 /* smoke.sks in Resources */,
+				310A4D8018B8012900EE01FD /* feathersRed.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,10 +481,12 @@
 				4C209CFD18A6EA1500482A89 /* Bird.m in Sources */,
 				312C0F8718A5987A004B63D5 /* MyScene.m in Sources */,
 				31D128BA18ABF66600940B0C /* SKSpriteNode+DebugDraw.m in Sources */,
+				310A4D8418BD40B700EE01FD /* AppUtil.m in Sources */,
 				4C209CF518A6DF6600482A89 /* SKTEffects.m in Sources */,
 				310E51C618A5AC1400D2EE17 /* SKTAudio.m in Sources */,
 				3155732E18A9539200B3CF81 /* Plane.m in Sources */,
 				312C0F8418A5987A004B63D5 /* ViewController.m in Sources */,
+				310A4D8718BD41EA00EE01FD /* Constants.m in Sources */,
 				310E51C418A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m in Sources */,
 				4C209CF618A6DF6600482A89 /* SKTTimingFunctions.m in Sources */,
 				310E51C718A5AC1400D2EE17 /* SKTUtils.mm in Sources */,

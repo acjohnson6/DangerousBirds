@@ -10,6 +10,7 @@
 
 @interface Bird : AnimatingSprite
 
+-(void)flyWithScene:(SKScene*)scene bgLayer:(SKNode*)bgLayer;
 -(void)feathersPuff;
 
 @end

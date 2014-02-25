@@ -10,24 +10,21 @@
 
 @implementation AnimatingSprite
 
-+ (SKAction*)createAnimWithPrefix:(NSString *)prefix
-                           suffix:(NSString *)suffix
-{
-    SKTextureAtlas *atlas =
-    [SKTextureAtlas atlasNamed:@"characters"];
++ (SKAction*)createAnimWithName:(NSString*)name{
+    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"birds"];
     
     NSArray *textures =
-    @[[atlas textureNamed:[NSString stringWithFormat:@"%@_%@1",
-                           prefix, suffix]],
-      [atlas textureNamed:[NSString stringWithFormat:@"%@_%@2",
-                           prefix, suffix]]];
+    @[[atlas textureNamed:[NSString stringWithFormat:@"%@01",
+                           name]],
+      [atlas textureNamed:[NSString stringWithFormat:@"%@02",
+                           name]]];
     
     [textures[0] setFilteringMode:SKTextureFilteringNearest];
     [textures[1] setFilteringMode:SKTextureFilteringNearest];
     
     return [SKAction repeatActionForever:
             [SKAction animateWithTextures:textures
-                             timePerFrame:0.20]];
+                             timePerFrame:0.1]];
 }
 
 -(void)moveTowards{

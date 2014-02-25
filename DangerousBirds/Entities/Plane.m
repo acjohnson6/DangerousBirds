@@ -22,6 +22,7 @@
     CGFloat _screenWidth;
     SKSpriteNode *engine1;
     SKSpriteNode *engine2;
+    SKSpriteNode *cockPit;
 }
 
 - (instancetype)initWithScreenWidth:(CGFloat)screenWidth{
@@ -63,6 +64,22 @@
         engine2.physicsBody.collisionBitMask = 0;
         engine2.position = CGPointMake(70, 40);
         [self addChild:engine2];
+        
+        /*contactSize = CGSizeMake(60, 40);
+        
+        cockPit = [SKSpriteNode new];
+        cockPit.name = @"cockPit";
+        cockPit.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:contactSize];
+        [cockPit attachDebugRectWithSize:contactSize];
+        cockPit.physicsBody.usesPreciseCollisionDetection = YES;
+        cockPit.physicsBody.allowsRotation = NO;
+        cockPit.physicsBody.restitution = 1;
+        cockPit.physicsBody.friction = 0;
+        cockPit.physicsBody.categoryBitMask = PCCockPitCategory;
+        cockPit.physicsBody.contactTestBitMask = 0xFFFFFFFF;
+        cockPit.physicsBody.collisionBitMask = 0;
+        cockPit.position = CGPointMake(0, 60);
+        [self addChild:cockPit];*/
         
         _emitterSmoke1 = [SKEmitterNode skt_emitterNamed:@"smoke"];
         _emitterSmoke1.name = @"smoke1";

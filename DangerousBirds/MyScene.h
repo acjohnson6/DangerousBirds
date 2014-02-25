@@ -15,12 +15,14 @@
     CGFloat screenHeight;
     CGFloat screenWidth;
     double currentMaxAccelX;
+    //NEW* Moving Y
+    double currentMaxAccelY;
 }
 
 typedef NS_OPTIONS(uint32_t, PCPhysicsCategory)
 {
     PCBoundaryCategory  = 1 << 0,
-    PCPlaneCategory     = 1 << 1,
+    PCCockPitCategory     = 1 << 1,
     PCBirdCategory      = 1 << 2,
     PCEngine1Category   = 1 << 3,
     PCEngine2Category   = 1 << 4,

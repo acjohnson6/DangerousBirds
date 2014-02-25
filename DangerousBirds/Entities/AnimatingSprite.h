@@ -18,6 +18,5 @@ static inline CGFloat ScalarRandomRange(CGFloat min,
 @interface AnimatingSprite : SKSpriteNode
 @property (strong,nonatomic) SKAction *moveDown;
 
-+ (SKAction*)createAnimWithPrefix:(NSString *)prefix
-                           suffix:(NSString *)suffix;
++ (SKAction*)createAnimWithName:(NSString *)name;
 @end

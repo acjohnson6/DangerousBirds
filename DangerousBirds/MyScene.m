@@ -11,6 +11,8 @@
 #import "SKEmitterNode+SKTExtras.h"
 #import "SKAction+SKTExtras.h"
 #import "Bird.h"
+#import "AppUtil.h"
+//#import <AudioToolbox/AudioToolbox.h>
 
 static const float BG_POINTS_PER_SEC = 50;
 
@@ -23,6 +25,7 @@ static const float BG_POINTS_PER_SEC = 50;
     SKLabelNode* _distanceLabel;
     SKLabelNode* _titleLabel;
     SKLabelNode* _companyLabel;
+    SKLabelNode* _scoreLabel;
     SKLabelNode* startMsg;
     NSInteger distance;
     SKEmitterNode *_emitterPuff;
@@ -74,13 +77,6 @@ static const float BG_POINTS_PER_SEC = 50;
                                                          NSLog(@"%@", error);
                                                      }
                                                  }];
-        
-        /*[self runAction:[SKAction repeatActionForever:
-                         [SKAction sequence:@[
-                                              [SKAction performSelector:@selector(spawnBird)
-                                                               onTarget:self],
-                                              [SKAction waitForDuration:0.25]]]]];*/
-        
     }
     return self;
 }
@@ -88,28 +84,25 @@ static const float BG_POINTS_PER_SEC = 50;
 -(void)outputAccelertionData:(CMAcceleration)acceleration
 {
     currentMaxAccelX = 0;
+    //NEW* moving Y
+    currentMaxAccelY = 0;
     
     if(fabs(acceleration.x) > fabs(currentMaxAccelX))
     {
         currentMaxAccelX = acceleration.x;
     }
+    //NEW* moving Y
+    if(fabs(acceleration.y) > fabs(currentMaxAccelY))
+    {
+        currentMaxAccelY = acceleration.y;
+    }
 }
 
 - (void)spawnBird
 {
-    //return;
     if (_gameState == PCGameStatePlaying) {
         bird = [[Bird alloc]init];
-        CGPoint birdScenePos = CGPointMake(ScalarRandomRange(bird.size.height/2,
-                                                          self.size.height-bird.size.height/2), self.size.height + bird.size.height/2);
-        bird.position = [self convertPoint:birdScenePos toNode:_bgLayer];
-        [_bgLayer addChild:bird];
-    
-        SKAction *actionMove =
-        [SKAction moveByX:0 y:-self.size.height + bird.size.height duration:2.0];
-        SKAction *actionRemove = [SKAction removeFromParent];
-        [bird runAction:
-         [SKAction sequence:@[actionMove, actionRemove]]];
+        [bird flyWithScene:self bgLayer:_bgLayer];
     }
 }
 
@@ -142,7 +135,7 @@ static const float BG_POINTS_PER_SEC = 50;
                 if (![[self children] containsObject:_emitterRain] && ![[self children] containsObject:_emitterSnow]) {
                 
                     int lowerBound = 1;
-                    int upperBound = 10;
+                    int upperBound = 11;
                     int randomWeather = lowerBound + arc4random() % (upperBound - lowerBound);
                     
                     switch (randomWeather) {
@@ -184,10 +177,21 @@ static const float BG_POINTS_PER_SEC = 50;
         }
     }
     
-    float maxY = screenRect.size.width - _plane.size.width/2;
+    //Previous static Y
+    /*float maxY = screenRect.size.width - _plane.size.width/2;
     float minY = _plane.size.width/2;
     
     float newY = 90.0;
+    float newX = 0;*/
+    
+    float maxY = screenRect.size.width - _plane.size.width/2;
+    float minY = _plane.size.width/2;
+    
+    
+    float maxX = screenRect.size.height - _plane.size.height/2;
+    float minX = _plane.size.height/2;
+    
+    float newY = 0;
     float newX = 0;
     
     SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed: @"plane"];
@@ -213,12 +217,17 @@ static const float BG_POINTS_PER_SEC = 50;
         _plane.texture = textureBase;
     }
     
+    //NEW* Moving Y
+    newY = 6.0 + currentMaxAccelY *10;
+    
     float newXshadow = newX+_planeShadow.position.x;
     float newYshadow = 73.5;
     
     newXshadow = MIN(MAX(newXshadow,minY+15),maxY+15);
     
     newX = MIN(MAX(newX+_plane.position.x,minY),maxY);
+    //NEW* Moving Y
+    newY = MIN(MAX(newY+_plane.position.y,minX),maxX);
     
     _plane.position = CGPointMake(newX, newY);
     _planeShadow.position = CGPointMake(newXshadow, newYshadow);
@@ -234,6 +243,9 @@ static const float BG_POINTS_PER_SEC = 50;
             [self childNodeWithName:@"titleLabel"].hidden = YES;
             [self childNodeWithName:@"companyLabel"].hidden = YES;
             [self childNodeWithName:@"msgLabel"].hidden = YES;
+            [self childNodeWithName:@"scoreLabel"].hidden = YES;
+            [self childNodeWithName:@"distanceLabel"].hidden = NO;
+            
             self.gameStartBlock(YES);
             [self runAction:[SKAction repeatActionForever:
                              [SKAction sequence:@[
@@ -275,49 +287,120 @@ static const float BG_POINTS_PER_SEC = 50;
 {
     SKPhysicsBody *other1 =
     (contact.bodyA.categoryBitMask == PCEngine1Category ?
-     contact.bodyB : contact.bodyA);
-    
-    if (other1.categoryBitMask == PCBirdCategory) {
-        _emitterFeathers = [SKEmitterNode skt_emitterNamed:@"feathers"];
-        _emitterFeathers.name = @"feathers";
-        _emitterFeathers.targetNode = self;
-        _emitterFeathers.zPosition = 5;
-        CGPoint point = CGPointMake(-70, 70);
-        _emitterFeathers.position = point;
-        [_plane addChild:_emitterFeathers];
-        Bird *hitBird = (Bird *)other1.node;
-        [hitBird feathersPuff];
-        [_plane engineSmokeEngineNumber:EngineNumber1];
-    }
+     contact.bodyB : contact.bodyA); // || PCEngine1Category
     
     SKPhysicsBody *other2 =
     (contact.bodyA.categoryBitMask == PCEngine2Category ?
      contact.bodyB : contact.bodyA);
     
-    if (other2.categoryBitMask == PCBirdCategory) {
-        _emitterFeathers = [SKEmitterNode skt_emitterNamed:@"feathers"];
-        _emitterFeathers.name = @"feathers";
-        _emitterFeathers.targetNode = self;
-        _emitterFeathers.zPosition = 5;
-        CGPoint point = CGPointMake(70, 70);
-        _emitterFeathers.position = point;
-        [_plane addChild:_emitterFeathers];
-        Bird *hitBird = (Bird *)other2.node;
-        [hitBird feathersPuff];
-        [_plane engineSmokeEngineNumber:EngineNumber2];
+
+    if (other1.categoryBitMask == PCBirdCategory) {
+        [self engineCollision:other1.node engineNumber:EngineNumber1];
     }
+
+    if (other2.categoryBitMask == PCBirdCategory) {
+        [self engineCollision:other2.node engineNumber:EngineNumber2];
+    }
+    
+    
+    
+    
+}
+
+-(void)engineCollision:(SKNode*)node engineNumber:(EngineNumber)engineNumber
+{
+    _emitterFeathers = [SKEmitterNode skt_emitterNamed:[NSString stringWithFormat:@"feathers%@",[node.userData objectForKey:@"birdColor"]]];
+    _emitterFeathers.name = @"feathers";
+    _emitterFeathers.targetNode = self;
+    _emitterFeathers.zPosition = 5;
+    
+    CGPoint amount;
+    
+    if(engineNumber == EngineNumber1) {
+        _emitterFeathers.position = CGPointMake(-70, 70);
+        amount = CGPointMake(-1.0f, 0.0f);
+    }else {
+        _emitterFeathers.position = CGPointMake(70, 70);
+        amount = CGPointMake(1.0f, 0.0f);
+    }
+    
+    [_plane addChild:_emitterFeathers];
+    [_emitterFeathers runAction:[SKAction skt_removeFromParentAfterDelay:1]];
+    Bird *hitBird = (Bird *)node;
+    [hitBird feathersPuff];
+    [_plane engineSmokeEngineNumber:engineNumber];
+    
+    amount.x *= 20;
+    amount.y *= 20;
+    SKAction *action = [SKAction skt_screenShakeWithNode:_plane amount:amount oscillations:3 duration:1.0];
+    [_plane runAction:action];
+    //AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
+-(void)birdHitEffects:(SKSpriteNode *)birdHit
+{
+    birdHit.physicsBody = nil;
+    [birdHit removeAllActions];
+    
+    SKNode *newNode = [SKNode node];
+    [_bgLayer addChild:newNode];
+    newNode.position = birdHit.position;
+    birdHit.position = CGPointZero;
+    [birdHit removeFromParent];
+    [newNode addChild:birdHit];
+    
+    const NSTimeInterval Duration = 1.3;
+    [newNode runAction:
+     [SKAction skt_removeFromParentAfterDelay:Duration]];
+    
+    [self scaleBird:newNode duration:Duration];
+    [self rotateBird:newNode duration:Duration];
+    [self fadeBird:newNode duration:Duration];
+}
+
+- (void)scaleBird:(SKNode *)node
+        duration:(NSTimeInterval)duration
+{
+    const CGFloat ScaleFactor = 1.5f + 2 * 0.25f;
+    
+    SKAction *scaleUp = [SKAction scaleTo:ScaleFactor
+                                 duration:duration * 0.16667];
+    scaleUp.timingMode = SKActionTimingEaseIn;
+    
+    SKAction *scaleDown = [SKAction scaleTo:0.0f
+                                   duration:duration * 0.83335];
+    scaleDown.timingMode = SKActionTimingEaseIn;
+    
+    [node runAction:[SKAction sequence:@[scaleUp, scaleDown]]];
+}
+
+- (void)rotateBird:(SKNode *)node
+         duration:(NSTimeInterval)duration
+{
+    SKAction *rotateAction = [SKAction rotateByAngle:M_PI*6.0f
+                                            duration:duration];
+    [node runAction:rotateAction];
+}
+
+- (void)fadeBird:(SKNode *)node duration:(NSTimeInterval)duration
+{
+    SKAction *fadeAction =
+    [SKAction fadeOutWithDuration:duration * 0.75];
+    fadeAction.timingMode = SKActionTimingEaseIn;
+    [node runAction:[SKAction skt_afterDelay:duration * 0.25
+                                     perform:fadeAction]];
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact
 {
-    SKPhysicsBody *other =
+    /*SKPhysicsBody *other =
     (contact.bodyA.categoryBitMask == PCPlaneCategory ?
      contact.bodyB : contact.bodyA);
     
     if (other.categoryBitMask &
         _plane.physicsBody.collisionBitMask) {
         //Make plane span down towards engine hit
-    }
+    }*/
 }
 
 - (void)createUserInterface
@@ -346,6 +429,7 @@ static const float BG_POINTS_PER_SEC = 50;
     _distanceLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     _distanceLabel.position = CGPointMake(2, 5);
     _distanceLabel.zPosition = 20;
+    _distanceLabel.hidden = YES;
     [self addChild:_distanceLabel];
     
     //adding airplane shadow
@@ -357,8 +441,10 @@ static const float BG_POINTS_PER_SEC = 50;
 }
 
 -(void)StartLevel{
+    [self removeAllActions];
     distance = 0;
     _distanceLabel.text = [NSString stringWithFormat:@"Distance: %li",(long)distance];
+    _distanceLabel.hidden = YES;
     
     //adding the airplane
     _plane = [[Plane alloc]initWithScreenWidth:screenWidth];
@@ -378,8 +464,15 @@ static const float BG_POINTS_PER_SEC = 50;
         _companyLabel.fontColor = [UIColor redColor];
         _companyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         _companyLabel.position = CGPointMake(screenWidth/2, screenHeight-143);
+        _scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        _scoreLabel.text = [NSString stringWithFormat:@"High Score: %li",(long)[[AppUtil defaultHighScore] integerValue]];
+        _scoreLabel.name = @"scoreLabel";
+        _scoreLabel.fontSize = 20;
+        _scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+        _scoreLabel.position = CGPointMake(screenWidth/2, 30);
         [self addChild:_titleLabel];
         [self addChild:_companyLabel];
+        [self addChild:_scoreLabel];
     } else {
         _titleLabel.hidden = NO;
         _companyLabel.hidden = NO;
@@ -395,6 +488,8 @@ static const float BG_POINTS_PER_SEC = 50;
     } else {
         startMsg.text = @"Tap Screen to Start!";
         startMsg.hidden = NO;
+        _scoreLabel.text = [NSString stringWithFormat:@"High Score: %li",(long)[[AppUtil defaultHighScore] integerValue]];
+        _scoreLabel.hidden = NO;
     }
     
     if ([[self children] containsObject:_emitterRain])
@@ -404,12 +499,22 @@ static const float BG_POINTS_PER_SEC = 50;
 }
 
 -(void)EndLevel{
-    [self removeAllActions];
+    //[self removeAllActions];
     _gameState = PCGameStateInReloadMenu;
+    
+    if ([[AppUtil defaultHighScore]integerValue]<distance) {
+        [AppUtil setDefaultHighScore:[NSNumber numberWithInteger:distance]];
+        SKLabelNode* label = (SKLabelNode*)[self childNodeWithName:@"scoreLabel"];
+        label.text = @"New High Score!!!";
+        label.hidden = NO;
+    }
+    
     
     SKLabelNode* label = (SKLabelNode*)[self childNodeWithName:@"msgLabel"];
     label.text = @"Try Again?";
     label.hidden = NO;
+    
+    
     
     [_bgLayer enumerateChildNodesWithName:@"bird" usingBlock:^(SKNode *node, BOOL *stop) {
         [node removeFromParent];
