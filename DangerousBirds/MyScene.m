@@ -15,6 +15,8 @@
 //#import <AudioToolbox/AudioToolbox.h>
 
 static const float BG_POINTS_PER_SEC = 50;
+static SKAction *HitBirdSound;
+static SKAction *ChopBirdSound;
 
 @interface MyScene () <SKPhysicsContactDelegate>
 @end
@@ -28,18 +30,23 @@ static const float BG_POINTS_PER_SEC = 50;
     SKLabelNode* _scoreLabel;
     SKLabelNode* startMsg;
     NSInteger distance;
-    SKEmitterNode *_emitterPuff;
-    SKEmitterNode *_emitterRain;
-    SKEmitterNode *_emitterSnow;
-    SKEmitterNode *_emitterFeathers;
     PCGameState _gameState;
     Bird *bird;
+}
+
++ (void)initialize
+{
+    if ([self class] == [MyScene class]) {
+        
+        HitBirdSound = [SKAction playSoundFileNamed:@"hitBird.wav" waitForCompletion:NO];
+        
+        ChopBirdSound = [SKAction playSoundFileNamed:@"hitBird.wav" waitForCompletion:NO];
+    }
 }
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        
         _gameState = PCGameStateStartingLevel;
         
         //adding the background
@@ -132,45 +139,34 @@ static const float BG_POINTS_PER_SEC = 50;
             _distanceLabel.text = [NSString stringWithFormat:@"Distance: %li",(long)distance];
             
             if (distance % 1500 == 0) {
-                if (![[self children] containsObject:_emitterRain] && ![[self children] containsObject:_emitterSnow]) {
-                
-                    int lowerBound = 1;
-                    int upperBound = 11;
-                    int randomWeather = lowerBound + arc4random() % (upperBound - lowerBound);
+                int lowerBound = 1;
+                int upperBound = 11;
+                int randomWeather = lowerBound + arc4random() % (upperBound - lowerBound);
                     
-                    switch (randomWeather) {
-                        case 1: case 6: case 8: {
-                            SKAction *lightening =
-                            [SKAction sequence:@[[SKAction waitForDuration:2],
-                                                 [SKAction performSelector:@selector(colorGlitch) onTarget:self],
-                                                 [SKAction waitForDuration:2],
-                                                 [SKAction performSelector:@selector(colorGlitch) onTarget:self],
-                                                 [SKAction waitForDuration:2],
-                                                 [SKAction performSelector:@selector(colorGlitch) onTarget:self]]];
-                            [self runAction:lightening];
-                        }
-                        case 3: case 4:  case 9: case 10: {
-                            if (![[self children] containsObject:_emitterRain]) {
-                                [self addChild:_emitterRain];
-                                [_emitterRain runAction:[SKAction skt_removeFromParentAfterDelay:10]];
-                                
-                            }
-                        }
-                            break;
-                        case 2: case 5: case 7: {
-                            if (![[self children] containsObject:_emitterSnow]) {
-                                [self addChild:_emitterSnow];
-                                [_emitterSnow runAction:[SKAction skt_removeFromParentAfterDelay:10]];
-                                
-                            }
-                        }
-                        default:
-                            break;
+                switch (randomWeather) {
+                    case 1: case 6: case 8: {
+                        SKAction *lightening =
+                        [SKAction sequence:@[[SKAction waitForDuration:2],
+                                            [SKAction performSelector:@selector(colorGlitch) onTarget:self],
+                                            [SKAction waitForDuration:2],
+                                            [SKAction performSelector:@selector(colorGlitch) onTarget:self],
+                                            [SKAction waitForDuration:2],
+                                            [SKAction performSelector:@selector(colorGlitch) onTarget:self]]];
+                        [self runAction:lightening];
                     }
+                    case 3: case 4:  case 9: case 10: {
+                        [self createWeatherWithName:@"rain"];
+                    }
+                        break;
+                    case 2: case 5: case 7: {
+                        [self createWeatherWithName:@"snow"];
+                    }
+                    default:
+                        break;
                 }
             }
-            break;
         }
+            break;
         case PCGameStateInReloadMenu:
         {
             break;
@@ -285,31 +281,42 @@ static const float BG_POINTS_PER_SEC = 50;
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
-    SKPhysicsBody *other1 =
-    (contact.bodyA.categoryBitMask == PCEngine1Category ?
-     contact.bodyB : contact.bodyA); // || PCEngine1Category
+    SKPhysicsBody *other;
+    EngineNumber engineNumber = EngineNumberUnknown;
     
-    SKPhysicsBody *other2 =
-    (contact.bodyA.categoryBitMask == PCEngine2Category ?
-     contact.bodyB : contact.bodyA);
+    if (contact.bodyA.categoryBitMask == PCEngine1Category || contact.bodyB.categoryBitMask == PCEngine1Category) {
+        other =
+        (contact.bodyA.categoryBitMask == PCEngine1Category ?
+         contact.bodyB : contact.bodyA);
+        engineNumber = EngineNumber1;
+    } else if (contact.bodyA.categoryBitMask == PCEngine2Category || contact.bodyB.categoryBitMask == PCEngine2Category) {
+        other =
+        (contact.bodyA.categoryBitMask == PCEngine2Category ?
+         contact.bodyB : contact.bodyA);
+        engineNumber = EngineNumber2;
+    } else if (contact.bodyA.categoryBitMask == PCCockPitCategory || contact.bodyB.categoryBitMask == PCCockPitCategory) {
+        other =
+        (contact.bodyA.categoryBitMask == PCCockPitCategory ?
+         contact.bodyB : contact.bodyA);
+    }
     
 
-    if (other1.categoryBitMask == PCBirdCategory) {
-        [self engineCollision:other1.node engineNumber:EngineNumber1];
+    if (other.categoryBitMask == PCBirdCategory) {
+        if (!engineNumber == EngineNumberUnknown) {
+            [self engineCollision:other.node engineNumber:engineNumber];
+        } else {
+            [self birdHitEffects:(SKSpriteNode *)other.node];
+        }
     }
+}
 
-    if (other2.categoryBitMask == PCBirdCategory) {
-        [self engineCollision:other2.node engineNumber:EngineNumber2];
-    }
-    
-    
-    
-    
+- (void)didEndContact:(SKPhysicsContact *)contact
+{
 }
 
 -(void)engineCollision:(SKNode*)node engineNumber:(EngineNumber)engineNumber
 {
-    _emitterFeathers = [SKEmitterNode skt_emitterNamed:[NSString stringWithFormat:@"feathers%@",[node.userData objectForKey:@"birdColor"]]];
+    SKEmitterNode *_emitterFeathers = [SKEmitterNode skt_emitterNamed:[NSString stringWithFormat:@"feathers%@",[node.userData objectForKey:@"birdColor"]]];
     _emitterFeathers.name = @"feathers";
     _emitterFeathers.targetNode = self;
     _emitterFeathers.zPosition = 5;
@@ -323,9 +330,9 @@ static const float BG_POINTS_PER_SEC = 50;
         _emitterFeathers.position = CGPointMake(70, 70);
         amount = CGPointMake(1.0f, 0.0f);
     }
-    
-    [_plane addChild:_emitterFeathers];
     [_emitterFeathers runAction:[SKAction skt_removeFromParentAfterDelay:1]];
+    [_plane addChild:_emitterFeathers];
+    
     Bird *hitBird = (Bird *)node;
     [hitBird feathersPuff];
     [_plane engineSmokeEngineNumber:engineNumber];
@@ -344,7 +351,7 @@ static const float BG_POINTS_PER_SEC = 50;
     
     SKNode *newNode = [SKNode node];
     [_bgLayer addChild:newNode];
-    newNode.position = birdHit.position;
+    newNode.position = CGPointMake(birdHit.position.x, birdHit.position.y+20);
     birdHit.position = CGPointZero;
     [birdHit removeFromParent];
     [newNode addChild:birdHit];
@@ -352,7 +359,7 @@ static const float BG_POINTS_PER_SEC = 50;
     const NSTimeInterval Duration = 1.3;
     [newNode runAction:
      [SKAction skt_removeFromParentAfterDelay:Duration]];
-    
+    [self runAction:HitBirdSound];
     [self scaleBird:newNode duration:Duration];
     [self rotateBird:newNode duration:Duration];
     [self fadeBird:newNode duration:Duration];
@@ -391,16 +398,14 @@ static const float BG_POINTS_PER_SEC = 50;
                                      perform:fadeAction]];
 }
 
-- (void)didEndContact:(SKPhysicsContact *)contact
-{
-    /*SKPhysicsBody *other =
-    (contact.bodyA.categoryBitMask == PCPlaneCategory ?
-     contact.bodyB : contact.bodyA);
-    
-    if (other.categoryBitMask &
-        _plane.physicsBody.collisionBitMask) {
-        //Make plane span down towards engine hit
-    }*/
+-(void)createWeatherWithName:(NSString*)weather{
+    SKEmitterNode *emitter = [SKEmitterNode skt_emitterNamed:weather];
+    emitter.name = weather;
+    emitter.targetNode = self;
+    emitter.position = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) + 10);
+    emitter.zPosition = 10;
+    [emitter runAction:[SKAction skt_removeFromParentAfterDelay:10]];
+    [self addChild:emitter];
 }
 
 - (void)createUserInterface
@@ -409,18 +414,6 @@ static const float BG_POINTS_PER_SEC = 50;
     self.physicsWorld.gravity = CGVectorMake(0, 0);
     
     [self StartLevel];
-    
-    _emitterRain = [SKEmitterNode skt_emitterNamed:@"rain"];
-    _emitterRain.name = @"rain";
-    _emitterRain.targetNode = self;
-    _emitterRain.position = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) + 10);
-    _emitterRain.zPosition = 10;
-    
-    _emitterSnow = [SKEmitterNode skt_emitterNamed:@"snow"];
-    _emitterSnow.name = @"snow";
-    _emitterSnow.targetNode = self;
-    _emitterSnow.position = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) + 10);
-    _emitterSnow.zPosition = 20;
     
     _distanceLabel = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
     _distanceLabel.name = @"distanceLabel";
@@ -491,11 +484,6 @@ static const float BG_POINTS_PER_SEC = 50;
         _scoreLabel.text = [NSString stringWithFormat:@"High Score: %li",(long)[[AppUtil defaultHighScore] integerValue]];
         _scoreLabel.hidden = NO;
     }
-    
-    if ([[self children] containsObject:_emitterRain])
-        [[self childNodeWithName:@"rain"] removeFromParent];
-    if ([[self children] containsObject:_emitterSnow])
-        [[self childNodeWithName:@"snow"] removeFromParent];
 }
 
 -(void)EndLevel{
@@ -520,13 +508,14 @@ static const float BG_POINTS_PER_SEC = 50;
         [node removeFromParent];
     }];
     
-    _emitterPuff = [SKEmitterNode skt_emitterNamed:@"puff"];
+    SKEmitterNode *_emitterPuff = [SKEmitterNode skt_emitterNamed:@"puff"];
     _emitterPuff.name = @"puff";
     _emitterPuff.targetNode = self;
     _emitterPuff.zPosition = 3;
     _emitterPuff.position = _plane.position;
-    [self addChild:_emitterPuff];
     [_emitterPuff runAction:[SKAction skt_removeFromParentAfterDelay:2]];
+    [self addChild:_emitterPuff];
+    
     _plane = nil;
 }
 

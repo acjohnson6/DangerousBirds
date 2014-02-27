@@ -65,7 +65,7 @@
         engine2.position = CGPointMake(70, 40);
         [self addChild:engine2];
         
-        /*contactSize = CGSizeMake(60, 40);
+        contactSize = CGSizeMake(30, 40);
         
         cockPit = [SKSpriteNode new];
         cockPit.name = @"cockPit";
@@ -79,7 +79,7 @@
         cockPit.physicsBody.contactTestBitMask = 0xFFFFFFFF;
         cockPit.physicsBody.collisionBitMask = 0;
         cockPit.position = CGPointMake(0, 60);
-        [self addChild:cockPit];*/
+        [self addChild:cockPit];
         
         _emitterSmoke1 = [SKEmitterNode skt_emitterNamed:@"smoke"];
         _emitterSmoke1.name = @"smoke1";
