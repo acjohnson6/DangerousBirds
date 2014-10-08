@@ -13,6 +13,8 @@
 #import "SKTEffects.h"
 #import "SKSpriteNode+DebugDraw.h"
 
+static SKAction *flyPlaneSound;
+
 @implementation Plane
 {
     SKEmitterNode *_emitterSmoke1;
@@ -25,6 +27,10 @@
     SKSpriteNode *cockPit;
 }
 
++ (void)initialize
+{
+    flyPlaneSound = [SKAction playSoundFileNamed:@"biplane-flying.mp3" waitForCompletion:NO];
+}
 - (instancetype)initWithScreenWidth:(CGFloat)screenWidth{
     SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed: @"plane"];
     SKTexture *texture = [atlas textureNamed:@"planeBase"];

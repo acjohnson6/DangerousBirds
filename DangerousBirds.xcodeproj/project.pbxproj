@@ -15,6 +15,7 @@
 		310A4D8418BD40B700EE01FD /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 310A4D8318BD40B700EE01FD /* AppUtil.m */; };
 		310A4D8718BD41EA00EE01FD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 310A4D8618BD41EA00EE01FD /* Constants.m */; };
 		310AB0EF18BEBBDF002E1EF0 /* hitBird.wav in Resources */ = {isa = PBXBuildFile; fileRef = 310AB0EE18BEBBDF002E1EF0 /* hitBird.wav */; };
+		310AB0F118BEC0E4002E1EF0 /* biplane-flying.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 310AB0F018BEC0E4002E1EF0 /* biplane-flying.mp3 */; };
 		310E51C318A5AC1400D2EE17 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */; };
 		310E51C418A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BC18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.m */; };
 		310E51C518A5AC1400D2EE17 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 310E51BE18A5AC1400D2EE17 /* SKNode+SKTExtras.m */; };
@@ -76,6 +77,7 @@
 		310A4D8518BD41EA00EE01FD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Util/Constants.h; sourceTree = "<group>"; };
 		310A4D8618BD41EA00EE01FD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Util/Constants.m; sourceTree = "<group>"; };
 		310AB0EE18BEBBDF002E1EF0 /* hitBird.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hitBird.wav; path = Resources/Art/Sound/hitBird.wav; sourceTree = "<group>"; };
+		310AB0F018BEC0E4002E1EF0 /* biplane-flying.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "biplane-flying.mp3"; path = "Resources/Art/Sound/biplane-flying.mp3"; sourceTree = "<group>"; };
 		310E51B918A5AC1400D2EE17 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKAction+SKTExtras.h"; path = "SKTUtils/SKAction+SKTExtras.h"; sourceTree = "<group>"; };
 		310E51BA18A5AC1400D2EE17 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SKAction+SKTExtras.m"; path = "SKTUtils/SKAction+SKTExtras.m"; sourceTree = "<group>"; };
 		310E51BB18A5AC1400D2EE17 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SKEmitterNode+SKTExtras.h"; path = "SKTUtils/SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		4C209D0118A6ED8B00482A89 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				310AB0F018BEC0E4002E1EF0 /* biplane-flying.mp3 */,
 				310AB0EE18BEBBDF002E1EF0 /* hitBird.wav */,
 			);
 			name = Sounds;
@@ -458,6 +461,7 @@
 				31F302B718AEA3FF009D764F /* snow.sks in Resources */,
 				310A4D7E18B8012900EE01FD /* feathersBrown.sks in Resources */,
 				310AB0EF18BEBBDF002E1EF0 /* hitBird.wav in Resources */,
+				310AB0F118BEC0E4002E1EF0 /* biplane-flying.mp3 in Resources */,
 				31F302B918AED548009D764F /* feathers.sks in Resources */,
 				3155732B18A9522200B3CF81 /* spark.png in Resources */,
 				3155733418AA933500B3CF81 /* fire.sks in Resources */,
